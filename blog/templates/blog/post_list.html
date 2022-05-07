@@ -1,0 +1,26 @@
+{% extends "blog/base.html" %}
+{% load static %}
+
+{% block title %}BLOG.NET{% endblock %}
+
+{% block content %}
+    <!-- <form action="/your-name/" method="post">
+        <label for="your_name">Your name: </label>
+        <input id="your_name" type="text" name="your_name" value="{{ current_name }}">
+        <input type="submit" value="OK">
+    </form> -->
+
+    {% for post in post_list %}
+    <article>
+        <h2>
+            <a href="{{ post.get_absolute_url }}">
+                {{post.title}}
+            </a>
+        </h2>
+        <p class="date">
+            Puclicado em {{ post.created }} por  {{ post.author }}
+        </p>
+        {{ post.body|linebreaks|truncatewords:10 }}
+    </article>
+    {% endfor %}
+{% endblock %}
